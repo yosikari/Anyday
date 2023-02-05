@@ -1,5 +1,7 @@
 <h1>Anyday</h1>
 
+<img src="/frontend/src/readme-media/readme-png/anyday-chartjs.png" width="600px" height="338px" title="hover text">
+
 <img src="https://i.imagesup.co/images2/cf4e8bc4f8e700f8744087fe11132b1dbf905ca1.png" />
 
 <h2>This app is UI/UX pixel perfect clone of 'monday.com'.</h2>
