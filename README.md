@@ -26,10 +26,10 @@ JavaScript | Node.js | React.js | SCSS | Express | ALS | MongoDB | Redux | Socke
 <img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-png/anyday-%20login.png?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 <img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-png/anyday-%20signup.png?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
- <h3>Full cradl</h3>
- <li>We support full cradl (Create | Read | Add | Delete | List).</li>
+ <h3>Full crudl</h3>
+ <li>We support full crudl (Create | Read | Update | Delete | List).</li>
  <li>User can create a new board \ group \ task \ comment</li>
- <li>User can edit title \ label \ priority \ time-line \ add or remove team members.</li>
+ <li>User can update title \ label \ priority \ time-line \ add or remove team members.</li>
  
 <img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/add%20task%20and%20colapse.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 <img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/delete.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
