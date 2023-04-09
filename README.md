@@ -1,8 +1,6 @@
 <h1>Anyday</h1>
 
-<img src="/frontend/src/readme-media/readme-png/anyday-chartjs.png" width="600px" height="338px" title="hover text">
-
-<img src="https://i.imagesup.co/images2/cf4e8bc4f8e700f8744087fe11132b1dbf905ca1.png" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-png/anyday-home.png?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 
 <h2>This app is UI/UX pixel perfect clone of 'monday.com'.</h2>
 <h3>
@@ -19,62 +17,62 @@ JavaScript | Node.js | React.js | SCSS | Express | ALS | MongoDB | Redux | Socke
 <li>Templates - the user can select a template board.</li>
 <li>Custom - the user can manually create his board, give it a name, add groups and tasks, change colors, set time estimation, priority and more.</li>
 
-<img src="https://im5.ezgif.com/tmp/ezgif-5-810305934d.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/template-board.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 
  <li>LogIn \ SignUp, the user can signup with an email, fullname and a password after signing in he can upload a profile picture.</li>
  <li>There is also the option to signin via facebook (using FB API to signin new users).</li>
  <li>We also support 'guest mode', that means the user can fully work on a board as a guest.</li>
  
- <img src="https://i.imagesup.co/images2/d854812692b9246d69b512456ddcf9b341d25888.png"/>
- <img src="https://i.imagesup.co/images2/52c8e892716379c5f7866efed643163dcd8ead93.png"/>
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-png/anyday-%20login.png?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-png/anyday-%20signup.png?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
- <h3>Full cradl</h3>
- <li>We support full cradl (Create | Read | Add | Delete | List).</li>
+ <h3>Full crudl</h3>
+ <li>We support full crudl (Create | Read | Update | Delete | List).</li>
  <li>User can create a new board \ group \ task \ comment</li>
- <li>User can edit title \ label \ priority \ time-line \ add or remove team members.</li>
+ <li>User can update title \ label \ priority \ time-line \ add or remove team members.</li>
  
-<img src="https://im5.ezgif.com/tmp/ezgif-5-e63788c7af.gif" />
-<img src="https://im5.ezgif.com/tmp/ezgif-5-35ba55ace7.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/add%20task%20and%20colapse.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/delete.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 
 <h3>Comments & activity log</h3>
 <li>The user can add\delete comments to each task and pin\un-pin a comment.</li>
 <li>The user also can upload an image \ video url \ edit text and more...</li>
 <li>For each specific task there is an activity log which contains all the changes done to the task.</li>
 
-<img src="https://im5.ezgif.com/tmp/ezgif-5-d4e250a099.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/comments%20and%20activity.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
  <h3>Multi select</h3>
  <li>The user can multi select tasks\groups with check-box.</li>
  <li>The selected tasks\groups can be deleted, duplicated, or moved in to a another group.</li>
  
- <img src="https://im5.ezgif.com/tmp/ezgif-5-572df2a7f2.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/multi-select.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
  <h3>Kanban & Charts</h3>
  <li>The user can view his board as kanban.</li>
  <li>There is a dashboard containing all boards including number of boards/number of tasks in each state and more.</li>
  
- <img src="https://im5.ezgif.com/tmp/ezgif-5-5eb38b803c.gif" />
- <img src="https://im5.ezgif.com/tmp/ezgif-5-09598b711f.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/kanban%20DND.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/ChartJS.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
  <h3>Beautiful DND lib</h3>
  <li>The user can DND tasks\groups & lables vertically and horizontally.</li>
  <li>When draging a group, all groups will automatically collapse. When the drag is finished they will automatically uncollapse .</li>
  <li>DND is also active on kanban view.</li>
  
- <img src="https://im5.ezgif.com/tmp/ezgif-5-e8ae287084.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/regular%20board%20DND.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
   <h3>Voice commends</h3>
  <li>The user can do things with voice controll like adding a group or task | filter the board | close voice manger.</li>
 
-<img src="https://im5.ezgif.com/tmp/ezgif-5-e8f3105334.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/voice%20commends.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
 
 
   <h3>Sockets & Responsive</h3>
  <li>The users can see every change live (the app uses sockets to emit all users on every change)</li>
  <li>Our app is responsive to each device, desktop \ tablet \ mobile</li>
  
- <img src="https://im5.ezgif.com/tmp/ezgif-5-537a1fc9d3.gif" />
- <img src="https://im5.ezgif.com/tmp/ezgif-5-0def2169df.gif" />
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/socket.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title=""> 
+<img src="https://github.com/yosikari/Anyday/blob/main/frontend/src/assets/readme-media/readme-gif/mobile%20view.gif?raw=true" maxWidth="600px" maxHeight="338px" objectFit="contain" title="">
  
  
  <hr/>
