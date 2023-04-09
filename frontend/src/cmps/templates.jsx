@@ -37,7 +37,6 @@ export function Templates() {
     }
 
     return <section className='templates-container flex'>
-
         <div className="template-picker dev" onClick={() => onTemplateSelect('dev board')} >
             <div><Icon iconType={Icon.type.SVG} icon={Code} iconSize={40} /></div> Software Development
         </div>
@@ -50,6 +49,5 @@ export function Templates() {
         <div className="template-picker CRM" onClick={() => onTemplateSelect('CRM board')} >
             <div><Icon iconType={Icon.type.SVG} icon={Connect} iconSize={25} /></div> Sales & CRM
         </div>
-
     </section>
 }

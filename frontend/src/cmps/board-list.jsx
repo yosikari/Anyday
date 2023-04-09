@@ -1,29 +1,14 @@
 import { useSelector } from "react-redux"
-import { NavLink, useNavigate } from "react-router-dom"
-
-import { loadBoards } from "../store/board.actions"
+import { NavLink } from "react-router-dom"
 
 import { MenuButton, Menu, MenuItem, Icon } from 'monday-ui-react-core'
 import { Duplicate, Delete, Board } from 'monday-ui-react-core/icons'
 
-import { useEffect } from "react"
 export function BoardList({ onDuplicateBoard, onRemoveBoard }) {
-    const navigate = useNavigate()
     const boards = useSelector((storeState) => storeState.boardModule.boards)
-    // useEffect(() => {
-    //     loadBoards()
-    // }, [])
     function onMenuClick(ev) {
-        // console.log('ev:', ev)
-        // console.log('Menu Click');
         ev.preventDefault()
         ev.stopPropagation()
-    }
-
-    function onBoardClick(ev, boardId) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        navigate(`/board/${boardId}`)
     }
 
     if (!boards) return <div>Loading...</div>
@@ -62,7 +47,5 @@ export function BoardList({ onDuplicateBoard, onRemoveBoard }) {
                 </MenuButton>
             </div>
         </NavLink>)}
-
     </section>
-
 }

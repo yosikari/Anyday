@@ -85,7 +85,6 @@ async function query(filterBy = getDefaultFilter()) {
         boards = await httpService.get(BASE_URL + queryParams)
         return boards
     }
-
     return boards
 }
 
@@ -148,16 +147,6 @@ async function getById(boardId, filterBy = getDefaultFilter()) {
             })
             filteredBoard.groups = groupsToSet
         }
-        //todo!!!
-        // ssss
-        // change sort method
-        // if (filterBy.sortBy === NUMBER_PICKER) {
-        //     filteredBoard.groups = filteredGroups.map(group => group.tasks = group.tasks.sort((a, b) => a.status.localeCompare(b.status) * filterBy.desc))
-        // }
-        // if (filterBy.sortBy === DATE_PICKER) {
-        //     filteredBoard.groups = filteredGroups.map(group => group.tasks = group.tasks.sort((a, b) => a.status.localeCompare(b.status) * filterBy.desc))
-        // }
-
         return filteredBoard
     } catch (error) {
         throw new Error('cant load board from service front', error)
@@ -165,27 +154,20 @@ async function getById(boardId, filterBy = getDefaultFilter()) {
 }
 
 async function remove(boardId,) {
-    // throw new Error('Nope')
-    // await storageService.remove(BOARD_KEY, boardId)
     return httpService.delete(`board/${boardId}`)
-
 }
 
 async function save(board) {
-
     try {
         if (board._id) {
             return httpService.put(BASE_URL + board._id, board)
-
         } else {
             board.owner = userService.getLoggedinUser()
             return httpService.post('board', board)
         }
     } catch (error) {
         console.log('cannot save/create board', error);
-
     }
-
 }
 
 async function duplicate(board) {
@@ -204,7 +186,6 @@ async function duplicate(board) {
 async function addBoardMsg(boardId, txt) {
     const board = await getById(boardId)
     if (!board.msgs) board.msgs = []
-
     const msg = {
         id: utilService.makeId(),
         by: userService.getLoggedinUser(),
@@ -212,7 +193,6 @@ async function addBoardMsg(boardId, txt) {
     }
     board.msgs.push(msg)
     await storageService.put(BOARD_KEY, board)
-
     return msg
 }
 
@@ -229,7 +209,6 @@ function getNewTask() {
         number: 0,
         txt: ''
     }
-
 }
 
 async function updateBoardService(board, data, type) {
@@ -343,9 +322,7 @@ async function updateGroupsService(board, data, type) {
                     })
                     group.isChecked = false
                 });
-
             })
-
             return board
         default:
             return board
@@ -362,12 +339,10 @@ async function updateTaskService(board, data, type) {
         time: Date.now(),
         byUser: loggedInUser ? loggedInUser : 'Guest',
     }
-
     if (data) {
         groupIdx = board.groups.findIndex(currGroup => currGroup.id === data.groupId)
         taskIdx = board.groups[groupIdx].tasks.findIndex(currGroup => currGroup.id === data.taskId)
     }
-
     if ((type === UPDATE_TASK_MEMBERS ||
         type === UPDATE_TASK_LABEL_STATUS ||
         type === UPDATE_TASK_STATUS ||
@@ -375,11 +350,9 @@ async function updateTaskService(board, data, type) {
         && !board.groups[groupIdx].tasks[taskIdx].activity) {
         board.groups[groupIdx].tasks[taskIdx].activity = []
     }
-
     switch (type) {
         case DELETE_TASK:
             board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.filter(task => task.id !== data.taskId)
-
             return board
         case DUPLICATE_TASK:
             data.taskToDuplicate.id = utilService.makeId()
@@ -425,14 +398,12 @@ async function updateTaskService(board, data, type) {
             board.groups[groupIdx].tasks[taskIdx].comments.unshift(board.groups[groupIdx].tasks[taskIdx].pinnedComments[UnpinCommentIdx])
             currTask.pinnedComments.splice(UnpinCommentIdx, 1)
             return board
-        // Need to make it Dynamic for each label
         case UPDATE_TASK_STATUS:
             activity.type = 'update_status'
             activity.fromStatus = board.groups[groupIdx].tasks[taskIdx].status
             activity.toStatus = data.labelPick
             board.groups[groupIdx].tasks[taskIdx].activity.unshift(activity)
             board.groups[groupIdx].tasks[taskIdx].status = data.labelPick
-            // console.log(board.groups[groupIdx].tasks[taskIdx].activity)
             return board
         case UPDATE_TASK_LABEL_STATUS:
             activity.type = 'update_label'
@@ -491,7 +462,6 @@ async function updateTaskService(board, data, type) {
 function getDefaultFilter() {
     return { title: '', sortBy: '', label: [], desc: 1 }
 }
-
 function getEmptyGroup() {
     return {
         id: utilService.makeId(),

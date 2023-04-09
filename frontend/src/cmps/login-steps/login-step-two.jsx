@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux';
 
 import { userService } from '../../services/user.service.js'
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js';
+import { showSuccessMsg } from '../../services/event-bus.service.js';
 
-import { Icon, Loader } from 'monday-ui-react-core';
+import { Icon } from 'monday-ui-react-core';
 import { MoveArrowRight } from 'monday-ui-react-core/icons';
 
 export function LoginStepTwo({ props }) {
@@ -25,7 +25,6 @@ export function LoginStepTwo({ props }) {
 
     async function onSubmitLogin(ev) {
         ev.preventDefault()
-        // console.log('login cred..', loginCredentials)
         const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (loginCredentials.email.match(valid)) {
             try {
@@ -34,7 +33,6 @@ export function LoginStepTwo({ props }) {
                 clearState()
                 navigate(`/board/${boards[0]._id}`)
             } catch (err) {
-                // showErrorMsg('OOps try again', err)
                 console.log('err:',err)
             }
         }

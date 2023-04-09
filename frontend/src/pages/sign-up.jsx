@@ -30,7 +30,6 @@ export function SignUp() {
     async function onSignup(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.email || !credentials.password || !credentials.fullname) return
-        // console.log('credentials:', credentials)
         try {
             const user = await userService.signup(credentials)
             showSuccessMsg(`Welcome ${user.fullname}`)
@@ -38,7 +37,6 @@ export function SignUp() {
             navigate(`/board/${boards[0]._id}`)
         }
         catch (err) {
-            // showErrorMsg('OOps try again', err)
             console.log('error: ',err)
         }
     }

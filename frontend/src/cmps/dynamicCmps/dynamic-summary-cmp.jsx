@@ -65,13 +65,6 @@ export function DynamicSummaryCmp({ cmp, board, group }) {
                 })
                 if (!sum) return ''
                 return sum
-            // case DATE_PICKER:
-            //     return
-            // case MEMEBER_PICKER:
-            //     return
-            // case TEXT_LABEL:
-            //     return
-
         }
 
     }
@@ -82,7 +75,6 @@ export function DynamicSummaryCmp({ cmp, board, group }) {
                 <div className="status-sum-container">
                     {
                         gruoupSummaryCalc(cmp).map((statusSum, idx) => {
-
                             return <div key={idx} className="status-sum"
                                 style={{
                                     backgroundColor: statusSum.bgColor,
@@ -117,7 +109,6 @@ export function DynamicSummaryCmp({ cmp, board, group }) {
                 <div className="priority-picker-sum">
                     {
                         gruoupSummaryCalc(cmp).map((prioritySum, idx) => {
-
                             return <div key={idx} className="status-sum"
                                 style={{
                                     backgroundColor: prioritySum.bgColor,
@@ -145,7 +136,5 @@ export function DynamicSummaryCmp({ cmp, board, group }) {
             return <div className="text-picker-sum-container">
                 <div className="text-picker-sum"> {gruoupSummaryCalc(cmp)}</div>
             </div>
-
     }
-
 }

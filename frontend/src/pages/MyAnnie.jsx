@@ -26,14 +26,11 @@ export function MyAnnie({ board, setfilterBy, setisAnnieOn, isAnnieOn }) {
     }, [isAnnieOn]);
 
     async function onAddBoard() {
-        // if (!boardToEdit.title ) return
         boardToEdit.title = 'Management Board'
         boardToEdit.description = 'Best Way To Manage Your Projects'
-
         try {
             const savedBoard = await addBoard(boardToEdit)
             setBoardToEdit(boardService.getEmptyBoard())
-
             navigate(`/board/${savedBoard._id}`)
             showSuccessMsg(`Board added (id: ${savedBoard._id})`)
         } catch (err) {
@@ -46,7 +43,6 @@ export function MyAnnie({ board, setfilterBy, setisAnnieOn, isAnnieOn }) {
             return { ...prev, label: type }
         })
     }
-
     const commands = [
         {
             command: '(Please) create a new (management) board',
@@ -132,28 +128,22 @@ export function MyAnnie({ board, setfilterBy, setisAnnieOn, isAnnieOn }) {
 
     return (
         <Fragment>
-
             <div tabIndex={0} className="annie-wrapper"
                 style={{ top: isAnnieOn ? '80%' : '-500px' }}
             >
-
                 <div className="annie-container">
                     <p>Microphone: {listening ? 'on' : 'off'}</p>
                     <div className="text-container-modal">
                         <div>{transcript}</div>
-
                     </div>
-
                 </div>
 
                 <FontAwesomeIcon
                     onClick={() => SpeechRecognition.startListening({
                         language: 'en-US'
                     })}
-
                     className="mic-modal"
                     icon={faMicrophone} style={{ color: listening ? '#F52918' : '#676879' }} />
-
                 <div className="white-circle"></div>
                 {listening && <div className="waves-container">
                     <Waves />
@@ -183,9 +173,7 @@ export function MyAnnie({ board, setfilterBy, setisAnnieOn, isAnnieOn }) {
                             <div>Shut down -Close Shiri-</div>
                         </div>
                     </div>}
-
             </div>
-
         </Fragment>
     );
 };

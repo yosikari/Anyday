@@ -9,7 +9,6 @@ export function StatusModal({ status, onClickLabelFilter }) {
     }
 
     return (
-
         <div className={`status-filter ${isStatusChose ? 'active-filter' : ''}`}
             onClick={() => onClickStatus(status.label)}
         >

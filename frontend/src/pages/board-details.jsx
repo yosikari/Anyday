@@ -8,10 +8,10 @@ import { DynamicModal } from "../cmps/dynamicCmps/dynamic-modal.jsx";
 import { GroupPreview } from "../cmps/group-preview";
 import { SideGroupBar } from "../cmps/side-group-bar";
 
-import { ADD_GROUP_FROM_BUTTOM, ADD_GROUP_FROM_HEADER, ADD_TASK_FROM_HEADER, DATE_PICKER, DUPLICATE_CHECKED_TASKS, LABEL_STATUS_PICKER, MEMEBER_PICKER, MOVE_TASK_TO_GROUP, ON_DRAG_GROUP, PRIORITY_PICKER, REMOVE_CHECKED_VALUE_GROUPS, REMOVE_TASKS_FROM_GROUP, STATUS_PICKER, UPDATE_TASK_DATE, UPDATE_TASK_LABEL_STATUS, UPDATE_TASK_MEMBERS, UPDATE_TASK_PRIORITY, UPDATE_TASK_STATUS } from "../services/board.service.local";
-import { handleOnDragEnd, loadBoard, onGroupDragStart, setPrevBoard, updateBoard, updateGroup, updateTask } from "../store/board.actions";
+import { ADD_GROUP_FROM_BUTTOM, ADD_GROUP_FROM_HEADER, ADD_TASK_FROM_HEADER, DATE_PICKER, DUPLICATE_CHECKED_TASKS, LABEL_STATUS_PICKER, MEMEBER_PICKER, MOVE_TASK_TO_GROUP, PRIORITY_PICKER, REMOVE_CHECKED_VALUE_GROUPS, REMOVE_TASKS_FROM_GROUP, STATUS_PICKER, UPDATE_TASK_DATE, UPDATE_TASK_LABEL_STATUS, UPDATE_TASK_MEMBERS, UPDATE_TASK_PRIORITY, UPDATE_TASK_STATUS } from "../services/board.service.local";
+import { handleOnDragEnd, loadBoard, onGroupDragStart, setPrevBoard, updateGroup, updateTask } from "../store/board.actions";
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Loader, Icon, DialogContentContainer, MenuItem, Menu, MenuDivider } from 'monday-ui-react-core';
 import { Add, Group, Item, Close, MoveArrowRight } from 'monday-ui-react-core/icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -61,18 +61,14 @@ export function BoardDetails() {
                 return updateTask(board, data, UPDATE_TASK_PRIORITY)
             case UPDATE_TASK_MEMBERS:
                 return updateTask(board, data, UPDATE_TASK_MEMBERS)
-
         }
-
     }
-    // 
+
     function checkIfTaskChecked() {
         let copyBoard = structuredClone(board)
         let tasksChecked = copyBoard.groups.map(group => {
             return group.tasks.filter(task => task.isChecked)
-
         })
-
         return tasksChecked.flat(1).length
     }
 
@@ -93,7 +89,6 @@ export function BoardDetails() {
                 }
             case PRIORITY_PICKER:
                 return board.priorities
-
         }
     }
 
@@ -123,23 +118,18 @@ export function BoardDetails() {
             case 'group':
                 setIsMobileMenuOpen(false)
                 return updateGroup(board, null, ADD_GROUP_FROM_HEADER)
-
         }
     }
 
     function onCloseCheckedModal() {
-
         updateGroup(board, false, REMOVE_CHECKED_VALUE_GROUPS)
         setIsCheckedShow(false)
-
     }
-    function onDeleteTasks() {
-        // let boardToUpdate = structuredClone(board)
 
+    function onDeleteTasks() {
         let boardToUpdate = structuredClone(board)
         let remainingTasks = boardToUpdate.groups.map(group => {
             return group.tasks.filter(task => !task.isChecked)
-
         })
         try {
             updateGroup(boardToUpdate, remainingTasks, REMOVE_TASKS_FROM_GROUP)
@@ -148,7 +138,6 @@ export function BoardDetails() {
             showErrorMsg('Couldn\'t delete tasks')
             console.log(error);
         }
-
     }
 
     function onMoveTasks(ev, groupId) {
@@ -160,7 +149,6 @@ export function BoardDetails() {
         console.log(checkedTasks);
         console.log('boardToUpdate', boardToUpdate);
         console.log('board', board);
-        // if (!checkedTasks[0].length) return
         updateGroup(board, { groupId, tasks: checkedTasks.flat(1) }, MOVE_TASK_TO_GROUP)
     }
 
@@ -175,7 +163,6 @@ export function BoardDetails() {
                     return task
                 }
             })
-
         })
         try {
             updateGroup(board, CheckedTasks, DUPLICATE_CHECKED_TASKS)
@@ -202,7 +189,6 @@ export function BoardDetails() {
         <SideGroupBar />
         {board && <div ref={boardContainer} className="board-container">
             <BoardHeader board={board} onSetFilterBy={onSetFilterBy} />
-
             <DragDropContext onDragStart={onDragStart}
                 onDragEnd={(res) =>
                     handleOnDragEnd(res,
@@ -219,7 +205,6 @@ export function BoardDetails() {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
-
                             {board.groups.map((group, index) =>
                                 <GroupPreview
                                     index={index}
@@ -233,7 +218,6 @@ export function BoardDetails() {
                                     setIsCheckedShow={setIsCheckedShow}
                                 />
                             )}
-
                             {provided.placeholder}
                             <div className="bottom-add-group-btn-container">
                                 <button className="btn clean bottom-add-group-btn"
@@ -303,10 +287,8 @@ export function BoardDetails() {
                     <div className="close-checked-modal">
                         <button onClick={onCloseCheckedModal}>
                             <Icon iconType={Icon.type.SVG} icon={Close} iconSize={18} customColor={'#323338'} />
-
                         </button>
                     </div>
-
                 </div>
                 {isMoveToShow &&
                     <div className="move-to-wrapper">
@@ -351,11 +333,6 @@ export function BoardDetails() {
                             onClick={(ev) => onAddFromMobile(ev, 'task')}
                         />
                         <MenuDivider />
-                        {/* <MenuItem
-                    //// NEED TO ADD STATUS PICKER AND ADD IT.
-                            //   icon={}
-                            title="Delete"
-                        /> */}
                         <MenuItem
                             icon={Group}
                             title="Add Group"
@@ -363,9 +340,7 @@ export function BoardDetails() {
                         />
                     </Menu>
                 </DialogContentContainer>
-
             </div>
-
         }
 
         <div className="btn-add-mobile-container">
@@ -375,6 +350,5 @@ export function BoardDetails() {
                     style={{ rotate: isMobileMenuOpen ? '405deg' : '0deg' }} iconType={Icon.type.SVG} icon={Add} iconSize={22} />
             </button>
         </div>
-
     </section >
 }

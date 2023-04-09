@@ -1,7 +1,4 @@
 import { HomePage } from './pages/home-page.jsx'
-import { AboutUs } from './pages/about-us.jsx'
-import { ReviewIndex } from './pages/review-index.jsx'
-import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
 import { BoardDetails } from './pages/board-details.jsx'
 
@@ -10,27 +7,12 @@ const routes = [
     {
         path: '/',
         component: <HomePage />,
-        label: 'Home 🏠',
+        label: 'Home',
     },
     {
-        path: 'car',
+        path: 'board-details',
         component: <BoardDetails />,
-        label: 'Cars'
-    },
-    {
-        path: 'review',
-        component: <ReviewIndex />,
-        label: 'Reviews'
-    },
-    {
-        path: 'chat',
-        component: <ChatApp />,
-        label: 'Chat'
-    },
-    {
-        path: 'about',
-        component: <AboutUs />,
-        label: 'About us'
+        label: 'Board Details'
     },
     {
         path: 'admin',

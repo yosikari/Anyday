@@ -31,14 +31,11 @@ export function BoardFilter({ board, onSetFilterBy }) {
         updateTask(board, undefined, ADD_TASK_FROM_HEADER)
     }
 
-    // configure filter to mobile also
-
     function onCancelFilter() {
         setfilterBy(prev => ({ ...prev, label: [] }))
     }
 
     function onClickLabelFilter(label, isChosed) {
-        // console.log(isChosed);
         setfilterBy(prev => {
             if (!isChosed) {
                 prev.label.push(label)
@@ -54,7 +51,6 @@ export function BoardFilter({ board, onSetFilterBy }) {
 
             return { ...prev, label: newLabelsFilter }
         })
-        // setisFilterFocues(false)
     }
     function handleChange({ target }) {
         let { value, name: field, type } = target
@@ -167,7 +163,6 @@ export function BoardFilter({ board, onSetFilterBy }) {
                             <section className='status-container'>
                                 <div className="filter-options-container">
                                     {board.priorities.map((prior, idx) => {
-                                        // console.log();
                                         return <PriorityModal
                                             key={idx}
                                             prior={prior}
@@ -188,7 +183,6 @@ export function BoardFilter({ board, onSetFilterBy }) {
 
                                 <div className="filter-options-container">
                                     {board.labelStatuses.map((label, idx) => {
-                                        // console.log();
                                         return <LabelModal
                                             key={idx}
                                             label={label}
@@ -196,16 +190,11 @@ export function BoardFilter({ board, onSetFilterBy }) {
                                         />
                                     })}
                                 </div>
-
                             </section>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         }
 
     </Fragment>

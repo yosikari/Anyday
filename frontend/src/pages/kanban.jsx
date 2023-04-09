@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { NavBar } from "../cmps/nav-bar";
 import { SideGroupBar } from "../cmps/side-group-bar";
 import { BoardHeader } from "../cmps/board-header";
 import { handleOnDragEnd, loadBoard } from "../store/board.actions";
-import { socketService, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_UPDATE_BOARD } from "../services/socket.service";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { StatusesList } from "../cmps/kanban/statuses-list";
 import { Loader } from 'monday-ui-react-core';
-
 
 export function Kanban() {
 
@@ -18,11 +16,6 @@ export function Kanban() {
 
     useEffect(() => {
         loadBoard(boardId)
-        // socketService.on(SOCKET_EVENT_UPDATE_BOARD, loadBoard)
-        // socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
-        // return () => {
-        //     socketService.off(SOCKET_EVENT_UPDATE_BOARD, loadBoard)
-        // }
     }, [boardId])
 
     if (!board.groups || !board) return <div className="loader"><Loader size={Loader.sizes.LARGE} /></div>
@@ -37,10 +30,7 @@ export function Kanban() {
                     {provided =>
 
                         <section className='main-kanban-container flex'
-                            // {...provided.droppableProps}
                             ref={provided.innerRef}>
-
-                            {/* DragHere */}
                             {board.statuses.map((status, idx) =>
                                 <Draggable
                                     draggableId={status.id}
@@ -58,17 +48,12 @@ export function Kanban() {
                                     }
                                 </Draggable>
                             )}
-                            {/* DragHere */}
-
                             {provided.placeholder}
                         </section>
                     }
 
-
                 </Droppable>
             </DragDropContext>
-
-
         </div>
     </section>
 }

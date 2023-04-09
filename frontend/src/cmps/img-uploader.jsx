@@ -22,12 +22,6 @@ export function ImgUploader({ onUploaded = null, setImgSrc }) {
     setImgSrc(secure_url)
   }
 
-  // function getUploadLabel() {
-  //   if (imgData.imgUrl) return 'Upload Another?'
-  //   return isUploading ? 'Uploading....' : 'Upload Image'
-  // }
-
-
   async function setUserImg(img) {
     try {
         userService.changeImage(img)
@@ -39,8 +33,6 @@ export function ImgUploader({ onUploaded = null, setImgSrc }) {
 
   return (
     <div className="upload-preview">
-      {/* {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }} />} */}
-      {/* <label htmlFor="imgUpload">{getUploadLabel()}</label> */}
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
     </div>
   )

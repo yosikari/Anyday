@@ -25,24 +25,13 @@ function setupSocketAPI(http) {
         })
         socket.on('chat-send-msg', msg => {
             logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-            // emits to all sockets:
-            // gIo.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
             gIo.to(socket.myTopic).emit('chat-add-msg', msg)
         })
         socket.on('emit-update-board', board => {
             logger.info(`-updated-board from socket [id: ${socket.id}], UPDATED emitting to topic ${socket.myTopic}`)
-            // emits to all sockets:
-            // gIo.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
             socket.broadcast.to(socket.myTopic).emit('event-update-board', board)
         })
 
-        // socket.on('user-watch', userId => {
-        //     logger.info(`user-watch from socket [id: ${socket.id}], on user ${userId}`)
-        //     socket.join('watching:' + userId)
-
-        // })
         socket.on('set-user-socket', userId => {
             logger.info(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
             socket.userId = userId
@@ -69,7 +58,6 @@ async function emitToUser({ type, data, userId }) {
         socket.emit(type, data)
     } else {
         logger.info(`No active socket for user: ${userId}`)
-        // _printSockets()
     }
 }
 
@@ -108,7 +96,6 @@ async function _getAllSockets() {
 
 async function _printSockets() {
     const sockets = await _getAllSockets()
-    // console.log(`Sockets: (count: ${sockets.length}):`)
     sockets.forEach(_printSocket)
 }
 function _printSocket(socket) {

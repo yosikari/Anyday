@@ -46,18 +46,12 @@ function getLoginToken(user) {
 
 function validateToken(loginToken) {
     try {
-        // console.log('logintoken',loginToken)
         const json = cryptr.decrypt(loginToken)
         const loggedinUser = JSON.parse(json)
         return loggedinUser
 
     } catch (err) {
-        // console.log('Invalid login token')
+        console.log('Invalid login token')
     }
     return null
 }
-
-// ;(async ()=>{
-//     await signup('bubu', '123', 'Bubu Bi')
-//     await signup('mumu', '123', 'Mumu Maha')
-// })()

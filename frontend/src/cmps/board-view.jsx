@@ -15,7 +15,6 @@ export function BoardView({ board }) {
     const [newTitle, setNewTitle] = useState(board.title)
 
     function onFinishEditing() {
-
         updateBoard(board, newTitle, CHANGE_TITLE)
     }
 
@@ -49,11 +48,9 @@ export function BoardView({ board }) {
                                 content="Show board description" animationType="expand">
                                 <button className='info-header'>
                                     <Icon iconType={Icon.type.SVG} ignoreFocusStyle={true} icon={Info} iconLabel="my bolt svg icon" iconSize={20} />
-
                                 </button>
                             </Tooltip>
                         </div>
-
                     </div>
                     <div className='star-header-container'>
                         <div className="monday-storybook-tooltip_bottom">
@@ -61,11 +58,9 @@ export function BoardView({ board }) {
                                 content="Add to favorites" animationType="expand">
                                 <button className='star'>
                                     <Icon iconType={Icon.type.SVG} ignoreFocusStyle={true} icon={Favorite} iconLabel="my bolt svg icon" iconSize={20} />
-
                                 </button>
                             </Tooltip>
                         </div>
-
                     </div>
                 </div>
                 <div className='board-header-right'>
@@ -94,7 +89,6 @@ export function BoardView({ board }) {
                 </div>
             </div>
             <div className='board-header-description'>
-            {/* // Board Dexc */}
                 <div className='board-header-txt'>Final Project For Coding Academy</div> 
                 <div className='description-modal'>See More</div>
             </div>
@@ -105,8 +99,6 @@ export function BoardView({ board }) {
                     <div className='main-table-txt'>
                     <NavLink className='main-table-a' to={`/board/${board._id}`} ><Icon iconType={Icon.type.SVG} icon={Home} iconSize={16} style={{ marginRight: '5px' }} />
                         Main Table
-
-                    {/* <div className='blue-line'></div> */}
                     </NavLink>
                     </div>  
                     <span>|</span>
@@ -121,5 +113,4 @@ export function BoardView({ board }) {
             </div>
         </div>
     </section>
-
 }

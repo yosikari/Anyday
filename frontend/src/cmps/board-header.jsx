@@ -8,7 +8,6 @@ import { MenuButton, Menu, Icon, MenuItem } from 'monday-ui-react-core'
 import { MoveArrowLeft, Search, Filter, Board } from 'monday-ui-react-core/icons'
 import { useSelector } from "react-redux";
 import { loadBoards } from "../store/board.actions";
-import { useDispatch } from "react-redux";
 import { boardService } from "../services/board.service.local";
 import { utilService } from "../services/util.service";
 
@@ -17,7 +16,6 @@ export function BoardHeader({ board, onSetFilterBy }) {
     const navigate = useNavigate()
     const boards = useSelector((storeState) => storeState.boardModule.boards)
     const [filterBy, setfilterBy] = useState(boardService.getDefaultFilter())
-    // need to clean filter with mobile and desktop app
     onSetFilterBy = useRef(utilService.debounce(onSetFilterBy))
 
     useEffect(() => {

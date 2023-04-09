@@ -1,9 +1,7 @@
-
 import { utilService } from '../services/util.service.js';
 
 import { Icon } from 'monday-ui-react-core'
-import { Time, Team, Status, DropdownChevronRight } from 'monday-ui-react-core/icons'
-
+import { Time, Team, DropdownChevronRight } from 'monday-ui-react-core/icons'
 
 
 export function TaskActivity({ task }) {
@@ -35,7 +33,6 @@ export function TaskActivity({ task }) {
         }
     }
 
-
     function taskActivityTypePicker(type, activ) {
         switch (type) {
             case 'update_member':
@@ -56,8 +53,6 @@ export function TaskActivity({ task }) {
                 </section>
             case 'update_status':
                 return <section className='activity-picker-container'>< div className="activity-type">
-                    {/* <Icon className='activity-person-icon' iconType={Icon.type.SVG}
-                        icon={Status} iconLabel="my svg icon" iconSize={14} /> */}
                     <div className='activity-type-container'>
                         {statusIcon()}
                         Status
@@ -74,8 +69,6 @@ export function TaskActivity({ task }) {
                 </section>
             case 'update_priority':
                 return <section className='activity-picker-container'>< div className="activity-type">
-                    {/* <Icon className='activity-person-icon' iconType={Icon.type.SVG}
-                        icon={Status} iconLabel="my svg icon" iconSize={14} /> */}
                     <div className='activity-type-container'>
                         {statusIcon()}
                         Priority
@@ -92,8 +85,6 @@ export function TaskActivity({ task }) {
                 </section>
             case 'update_label':
                 return <section className='activity-picker-container'>< div className="activity-type">
-                    {/* <Icon className='activity-person-icon' iconType={Icon.type.SVG}
-                        icon={Status} iconLabel="my svg icon" iconSize={14} /> */}
                     <div className='activity-type-container'>
                         {statusIcon()}
                         Label
@@ -132,9 +123,7 @@ export function TaskActivity({ task }) {
                     <img className='activity-by-avatar' src={activ.byUser?.imgUrl ? activ.byUser.imgUrl : 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=5642366172555987&height=50&width=50&ext=1677684563&hash=AeRtHaLPzcN5dY_QQcA'} alt="" />
                     <span className="activity-by-task">{task.title}</span>
                 </div>
-
                 {taskActivityTypePicker(activ.type, activ)}
-
             </div>) : 'NO ACTIVITY FOR THIS TASK YET...'
         }
 

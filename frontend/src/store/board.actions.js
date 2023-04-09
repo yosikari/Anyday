@@ -1,8 +1,6 @@
 import { boardService, ON_DRAG_CARD, ON_DRAG_GROUP, ON_DRAG_LABEL, ON_DRAG_STATUS, ON_DRAG_TASK } from "../services/board.service.local.js";
-import { userService } from "../services/user.service.js";
 import { store } from './store.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_BOARD, SET_PREV_BOARD } from "./board.reducer.js";
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UPDATE_BOARD, SET_BOARD, SET_PREV_BOARD } from "./board.reducer.js";
 import { socketService, SOCKET_EMIT_UPDATE_BOARD } from "../services/socket.service.js";
 
 // Action Creators:
@@ -12,12 +10,14 @@ export function getActionRemoveboard(boardId) {
         boardId
     }
 }
+
 export function getActionAddboard(board) {
     return {
         type: ADD_BOARD,
         board
     }
 }
+
 export function getActionUpdateboard(board) {
     return {
         type: UPDATE_BOARD,
@@ -68,10 +68,7 @@ export async function removeBoard(boardId) {
 
 export async function addBoard(board) {
     try {
-        console.log('board', board);
-
         const savedBoard = await boardService.save(board)
-        console.log('savedBoard', savedBoard);
         store.dispatch(getActionAddboard(savedBoard))
         return savedBoard
     } catch (err) {
@@ -90,20 +87,14 @@ export async function updateBoard(board, data, type) {
     } catch (err) {
         throw err
     }
-
 }
 
 export async function updateGroup(board, data, type) {
     try {
         const boardToUpdate = await boardService.updateGroupsService(board, data, type)
-        console.log('boardToUpdate', boardToUpdate);
-
         store.dispatch(getActionUpdateboard(boardToUpdate))
         const savedBoard = await boardService.save(boardToUpdate)
         socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard._id)
-        console.log('savedBoardsavedBoard', savedBoard);
-        console.log('boardToUpdateboardToUpdate', boardToUpdate);
-
         return savedBoard
     } catch (err) {
         console.log('Cannot save board', err)
@@ -117,13 +108,10 @@ export async function updateTask(board, data, type) {
         store.dispatch(getActionUpdateboard(boardToUpdate))
         const savedBoard = await boardService.save(boardToUpdate)
         socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard._id)
-        console.log('savedBoard', savedBoard);
-
         return savedBoard
     } catch (err) {
         console.log('Cannot save board', err)
-        console.log('Cannot save board222', err.message)
-        throw err.message
+        throw err
     }
 }
 
@@ -140,7 +128,6 @@ export function onGroupDragStart(board) {
 export function handleOnDragEnd(res, data) {
     if (!res.destination) return
     let board
-
     if (data) {
         if (data.prevBoard) board = data.prevBoard
         if (data.board) board = data.board
@@ -148,7 +135,6 @@ export function handleOnDragEnd(res, data) {
     const { source, destination, type, draggableId } = res
     const draggedFromId = source.droppableId
     const draggedToId = destination.droppableId
-
     switch (type) {
         case 'task-list':
             if (source.droppableId !== destination.droppableId) {
@@ -169,12 +155,10 @@ export function handleOnDragEnd(res, data) {
             groupsToUpdate.splice(res.destination.index, 0, reorderedGroup)
             store.dispatch({ type: SET_BOARD, board })
             return updateBoard(board, groupsToUpdate, ON_DRAG_GROUP)
-
         case 'label-list':
             const newOrderedLabels = data.cmpsOrder
             const [reorderedLabel] = newOrderedLabels.splice(res.source.index, 1)
             newOrderedLabels.splice(res.destination.index, 0, reorderedLabel)
-            console.log('newOrderedLabels:', newOrderedLabels)
             return updateBoard(board, newOrderedLabels, ON_DRAG_LABEL)
         case 'statuses-list':
             const newOrderedStatuses = data.statuses
@@ -190,7 +174,6 @@ export function handleOnDragEnd(res, data) {
                 taskToUpdate.status = destStatus.label
             } else {
                 const status = board.statuses.find(status => status.id === draggedFromId)
-                console.log('status:', status)
                 const [removed] = status.splice(source.index, 1)
                 status.splice(destination.index, 0, removed)
             } return updateBoard(board, board.groups, ON_DRAG_CARD)
@@ -198,27 +181,4 @@ export function handleOnDragEnd(res, data) {
         default:
             return updateGroup(board, board.groups, ON_DRAG_TASK)
     }
-
 }
-
-// Demo for Optimistic Mutation
-// (IOW - Assuming the server call will work, so updating the UI first)
-// export function onRemoveboardOptimistic(boardId) {
-//     store.dispatch({
-//         type: REMOVE_BOARD,
-//         boardId
-//     })
-//     showSuccessMsg('board removed')
-
-//     boardService.remove(boardId)
-//         .then(() => {
-//             console.log('Server Reported - Deleted Succesfully');
-//         })
-//         .catch(err => {
-//             showErrorMsg('Cannot remove board')
-//             console.log('Cannot load boards', err)
-//             store.dispatch({
-//                 type: REMOVE_FROM_BOARD,
-//             })
-//         })
-// }

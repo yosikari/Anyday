@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { updateTask } from "../store/board.actions";
 import { showSuccessMsg } from "../services/event-bus.service";
@@ -108,12 +108,6 @@ export function TaskPreview({ task, board, group, openModal, provided, snapshot,
 
                 <div className="task-name-cell" >
                     <EditableHeading className='task-title' onFinishEditing={onFinishEditingInTask} type={EditableHeading.types.h5} value={task.title} />
-
-                    {/*  NEED TO ADD THIS BUTTON AND CONFIGURE STYLING WONT IMPACT TASK ROW */}
-                    {/* <button onClick={() => setIsOpenDetails(!isOpenDetails)} className="open-item-page-btn">
-                        <Icon iconType={Icon.type.SVG} icon={Open} iconLabel="Task Details" iconSize={16} /><span>Open</span>
-                    </button> */}
-
                 </div>
                 <div className="msg-btn-container" onClick={() => {
                     setIsOpenDetails(!isOpenDetails)

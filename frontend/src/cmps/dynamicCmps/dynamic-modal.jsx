@@ -10,9 +10,7 @@ import Yossi from '../../assets/img/Yossi.jpg'
 import Oren from '../../assets/img/Oren.jpg'
 
 import { userService } from '../../services/user.service.js'
-
 import dayjs from "dayjs"
-import { TaskDetails } from '../task-details'
 
 export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
     const [users, setUsers] = useState([])
@@ -25,25 +23,9 @@ export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
         setUsers(users)
     }
 
-    const optionsAvatar = [{
-        value: "Harel",
-        label: "Harel Natan",
-        leftAvatar: Harel
-    }, {
-        value: "Yossi",
-        label: "Yossi Karasik",
-        leftAvatar: Yossi
-    }, {
-        value: "Oren",
-        label: "Oren Kot",
-        leftAvatar: Oren
-    }]
     function getDate(date) {
         setIsModalOpen(false)
         onUpdateTaskLabel(UPDATE_TASK_DATE, cmp.data, dayjs(date).unix())
-    }
-    function handleChange(ev) {
-        setIsModalOpen(false)
     }
 
     function onStatusPick(status) {
@@ -64,7 +46,6 @@ export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
         setIsModalOpen(false)
     }
 
-    // console.log('cmp', cmp);
     switch (cmp.type) {
 
         case STATUS_PICKER:
@@ -84,11 +65,9 @@ export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
             </div>
         case LABEL_STATUS_PICKER:
             return <div onClick={() => setIsModalOpen(false)} className="status-picker-container" style={{ left: cmp.pos.left, top: cmp.pos.top, position: 'absolute', }}>
-
                 <div className="arrow-up arrow-up-modal"></div>
                 <div className="status-picker-view">
                     {cmp.info.map((labelStatus, idx) => {
-
                         return <button onClick={() => onLabelStatusPick(labelStatus.label)} key={idx}
                             style={{ background: labelStatus.bgColor }}
                             className="status-picker">
@@ -101,9 +80,6 @@ export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
         case MEMEBER_PICKER:
             return <div className="member-picker-view" style={{ left: cmp.pos.left, top: cmp.pos.top, position: 'absolute', }}>
                 <div className="members-dropdown">
-                    {/* read more on dropdown with avatar */}
-                    {/* defaultValue={[optionsAvatar[0]]} */}
-                    {/* here goes amount of users connected to board  */}
                     <DialogContentContainer className="monday-style-story-chips_search-bar">
                         <div className='member-picker-user-container'>
                             <Icon onClick={() => setIsModalOpen(false)} className='member-picker-close-modal' iconType={Icon.type.SVG} icon={CloseSmall} iconLabel="my bolt svg icon" iconSize={18} />
@@ -127,30 +103,13 @@ export function DynamicModal({ cmp, setIsModalOpen, onUpdateTaskLabel }) {
                 </div>
             </div>
 
-            {/* <div className="monday-style-story-chips_lable">Suggested people</div>
-<div className="monday-style-story-chips_search">
-    <div className="monday-style-story-chips_inline-container" key="cont-1">
-        <Avatar size={Avatar.sizes.MEDIUM} src={Oren} type={Avatar.types.IMG} />
-        <span className="monday-style-story-chips_name">
-            Oren
-        </span>
-    </div>
-    <div className="monday-style-story-chips_inline-container" key="cont-2">
-        <Avatar size={Avatar.sizes.MEDIUM} backgroundColor={Avatar.colors.DARK_PURPLE} text="LC" type={Avatar.types.TEXT} />
-
-    </div>
-
-</div> */}
-
         case DATE_PICKER:
 
             return <div className="date-picker-view" style={{ left: cmp.pos.left, top: cmp.pos.top, position: 'absolute', }}>
                 <div className="arrow-up arrow-up-modal"></div>
                 <DialogContentContainer className={'styles.datepickerDialogContentContainer'}>
-
                     <DatePicker data-testid="date-picker" onPickDate={getDate} />
                 </DialogContentContainer>
-
             </div>
         case PRIORITY_PICKER:
             return <div onClick={() => setIsModalOpen(false)} className="status-picker-container" style={{ left: cmp.pos.left, top: cmp.pos.top, position: 'absolute', }}>

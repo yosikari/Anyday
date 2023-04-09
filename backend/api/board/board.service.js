@@ -21,7 +21,6 @@ function _buildCriteria(filterBy) {
     const criteria = {
         title: { $regex: filterBy.title, $options: 'i' }
     }
-
     return criteria
 }
 
@@ -62,7 +61,6 @@ async function update(board) {
     try {
         const boardToSave = { ...board }
         delete boardToSave._id
-
         const collection = await dbService.getCollection('board')
         await collection.updateOne({ _id: ObjectId(board._id) }, { $set: boardToSave })
         return board

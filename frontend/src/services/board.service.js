@@ -41,7 +41,6 @@ async function save(board) {
         savedBoard = await httpService.put(`board/${board._id}`, board)
 
     } else {
-        // Later, owner is set by the backend
         board.owner = userService.getLoggedinUser()
         // savedboard = await storageService.post(STORAGE_KEY, board)
         savedBoard = await httpService.post('board', board)
@@ -66,15 +65,11 @@ function getDefaultFilter() {
 }
 
 function getEmptyTaskComment(txt='',imgUrl='',byMember = {}) {
-
     return {
         id: utilService.makeId(),
         txt,
         createdAt: Date.now(),
         imgUrl,
         byMember
-            // _id, ........user ex
-            // fullname,
-            // imgUrl
     }
 }

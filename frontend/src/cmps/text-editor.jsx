@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
-import ReactDOMServer from 'react-dom/server';
 import ReactQuill, { Quill, editor } from 'react-quill';
-// import ImageResize  from 'quill-image-resize-module';
 import 'react-quill/dist/quill.snow.css';
-// import katex from "katex";
-// import "katex/dist/katex.min.css";
-// import CustomToolbar from './CustomToolbar'
-// window.katex = katex;
-
-// Quill.register('modules/ImageResize',ImageResize);
-
 
 export function TextEditor({ handleInputChange }) {
 
@@ -44,7 +35,6 @@ export function TextEditor({ handleInputChange }) {
             formats={formats}
         />
     </div>
-
 }
 
 

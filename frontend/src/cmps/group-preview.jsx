@@ -82,11 +82,9 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
     }
 
     function handleChangeCheckbox({ target }, groupId) {
-
-        //need to support blocking other groups cannot be checked
-
         updateGroup(board, { id: groupId, checked: target.checked }, UPDATE_GROUP_CHECKED)
     }
+
     function SetSortBy(type) {
         setSortBy(prev => {
             return { ...prev, sortBy: type }
@@ -120,12 +118,6 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                 </div>
             case MEMEBER_PICKER:
                 return <div className="person-label-header ">Person
-                    {/* <div className='sort-wrapper'
-                        onClick={() => SetSortBy(STATUS_PICKER)}
-                    >
-                        <FontAwesomeIcon className='sort-up' icon={faSortUp} />
-                        <FontAwesomeIcon className='sort-down' icon={faSortDown} />
-                    </div> */}
                 </div>
             case DATE_PICKER:
                 return <div className="date-label-header ">Date
@@ -262,14 +254,6 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                                             {board.cmpsOrder.map((cmp, idx) => renderGroupLabels(cmp, idx))}
                                         </div>
                                         <div className='label-sum-container'>
-
-                                            {/* <div className='hidden-task-container'>
-
-                                                {/* <div className='floatin-white-box-sum'></div> */}
-                                            {/* <div className='hidden-task'></div> */}
-                                            {/* <div className='right-floating-border'></div>
-                                            </div>  */}
-
                                             <div className='sum-labels-container'>
                                                 {
                                                     board.cmpsOrder.map((cmp, idx) => {
@@ -316,7 +300,6 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                     )}
 
                 </Draggable>
-                {/* {provided.placeholder} */}
             </div>
         }
 
@@ -328,7 +311,6 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}>
-
                             <div className="group-header-name"
                                 style={{ color: group.style }}>
 
@@ -395,14 +377,12 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                 <div className='row-header-container'>
                     <div className='main-left-header'>
                         <div className='floatin-white-box'></div>
-
                         <div className='left-row-container'>
                             <div style={{ backgroundColor: group.style }} className='left-border'></div>
                             <div className='checkbox-row-container'
                                 onClick={() => setIsCheckedShow(true)}
                             >
                                 <input className='row-checkbox'
-
                                     onChange={(ev) => handleChangeCheckbox(ev, group.id)}
                                     type="checkbox" checked={group.isChecked} />
                             </div>
@@ -467,9 +447,7 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                         <section className={`tasks-container`}
                             {...taskProvider.droppableProps}
                             ref={taskProvider.innerRef}
-
                         >
-
                             {group.tasks.map((task, index) =>
                                 <Draggable key={task.id} draggableId={task.id} index={index} isDragDisabled={isDndModeDisabled} >
                                     {(provided, snapshot) => (
@@ -532,7 +510,6 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                                         <div className='hidden-task'></div>
                                         <div className='right-floating-border'></div>
                                     </div>
-
                                     <div className='sum-labels-container'>
                                         {
                                             board.cmpsOrder.map((cmp, idx) => {
@@ -544,14 +521,12 @@ export function GroupPreview({ board, group, openModal, setIsDndModeDisabled, is
                                                 />
                                             })
                                         }
-
                                     </div>
                                     <div className='white-box'></div>
 
                                 </div>
                             </div>
                         </section>
-
                     )}
                 </Droppable>
             </div>

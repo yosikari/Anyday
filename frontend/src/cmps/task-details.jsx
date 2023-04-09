@@ -5,7 +5,6 @@ import { boardService } from '../services/board.service.js';
 import { updateTask } from '../store/board.actions';
 import { TextEditor } from './text-editor.jsx';
 import { CHANGE_TASK_TITLE, ADD_TASK_COMMENT, DELETE_TASK_COMMENT, PIN_TASK_COMMENT, UNPIN_TASK_COMMENT } from '../services/board.service.local.js';
-import { userService } from '../services/user.service.js'
 import { useSelector } from 'react-redux'
 
 import { TabList, Tab, EditableHeading, Icon, MenuButton, Menu, MenuItem, } from 'monday-ui-react-core'
@@ -14,7 +13,6 @@ import { TaskActivity } from "./task-activity";
 
 export function TaskDetails({ task, isOpenDetails, setIsOpenDetails, board, group, setIsDndModeDisabled }) {
 
-    // const [loggedInUser, setLoggedInUser] = useState(userService.getLoggedinUser())
     const [isAddComment, setAddComment] = useState(false)
     const [newTitle, setNewTitle] = useState(task.title)
     const [newCommentTxt, setComment] = useState('')
@@ -53,11 +51,9 @@ export function TaskDetails({ task, isOpenDetails, setIsOpenDetails, board, grou
         let data = boardService.getEmptyTaskComment(newCommentTxt, imgSrc, loggedInUser)
         let taskChanges = { comment: data, taskId: task.id, groupId: group.id }
         updateTask(board, taskChanges, ADD_TASK_COMMENT)
-        //reset data
         setComment('')
         setImg('')
         setAddComment(!isAddComment)
-        // console.log(data)
     }
 
     function onDeleteComment(comment, isPinned = false) {
@@ -89,7 +85,7 @@ export function TaskDetails({ task, isOpenDetails, setIsOpenDetails, board, grou
         setNewTitle(value)
     }
 
-    //.......imge upload
+    //.......imge upload base 64
     const inputRef = useRef(null);
 
     const handleClick = () => {
@@ -261,38 +257,7 @@ export function TaskDetails({ task, isOpenDetails, setIsOpenDetails, board, grou
                             or upload files to share with your team members</span></p>
                 </section >}
             </div> : <div className="task-activity-log">
-
                 <TaskActivity task={task} />
-
-                {/* {task.activity && task.activity.length ?
-                    task.activity.map(activ => <div key={activ.id} className="activity-row">
-
-                        <div className="activity-by">
-                            <span className="activity-by-time">
-                                <Icon className='task-details-header-time-icon'
-                                    iconType={Icon.type.SVG} icon={Time} iconLabel="my svg icon" iconSize={14} />
-                                {utilService.time_ago(activ.time)}
-                            </span>
-                                <img className='activity-by-avatar' src={activ.byUser?.imgUrl} alt="" />
-                            <span className="activity-by-task">{task.title}</span>
-                        </div>
-
-                        <div className="activity-type">
-                        <Icon className='activity-person-icon' iconType={Icon.type.SVG}
-                            icon={Team} iconLabel="my svg icon" iconSize={14} />
-                            Person
-                        </div>
-
-                        <div className="activity-action">
-                            {activ.action}
-                        </div>
-
-                        <div className="activity-data">
-                        {activ.toUserImg?<img className='activity-by-avatar' src={activ.toUserImg} alt="" />
-                            :<div className='task-details-by-user-img activity-by-avatar' >{(activ.toUserName).charAt(0).toUpperCase()}</div>}
-                        </div>
-
-                    </div>) : 'NO ACTIVITY FOR THIS TASK YET...'} */}
             </div>}
 
             <div className="slide-panel-resizer" draggable="true" onDrag={dragstart} onMouseDown={getInitX}>

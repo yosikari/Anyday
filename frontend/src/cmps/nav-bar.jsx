@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { login, logout, signup } from '../store/user.actions.js'
+import { showErrorMsg  } from '../services/event-bus.service'
+import { logout  } from '../store/user.actions.js'
 
 import logo from '../assets/img/logo.png'
-// import wm_icon from '../assets/img/wm_icon.avif'
 import wm_icon from '../assets/img/sub-icon.png'
 
 import { UserMsg } from './user-msg'
@@ -19,36 +17,16 @@ import { Gallery } from 'monday-ui-react-core/icons'
 
 export function NavBar() {
     const [toggleUserModal, setToggleUserModal] = useState('none')
-    const board = useSelector(storeState => storeState.boardModule.board)
     const loggedInUser = userService.getLoggedinUser()
     const navigate = useNavigate()
     const [imgSrc, setImgSrc] = useState(loggedInUser?.imgUrl)
-    // const user = useSelector(storeState => storeState.userModule.user)
     useEffect(() => {
         setImgSrc(loggedInUser?.imgUrl)
     }, [loggedInUser])
 
-
-    async function onLogin(credentials) {
-        try {
-            const user = await login(credentials)
-            showSuccessMsg(`Welcome: ${user.fullname}`)
-        } catch (err) {
-            showErrorMsg('Cannot login')
-        }
-    }
-    async function onSignup(credentials) {
-        try {
-            const user = await signup(credentials)
-            showSuccessMsg(`Welcome new user: ${user.fullname}`)
-        } catch (err) {
-            showErrorMsg('Cannot signup')
-        }
-    }
     async function onLogout() {
         try {
             await logout()
-            // showSuccessMsg(`Good bye`)
             setToggleUserModal('none')
         } catch (err) {
             showErrorMsg('Cannot logout')
@@ -64,7 +42,6 @@ export function NavBar() {
     }
 
     function getAvatarImg() {
-        // console.log('img',imgSrc)
         return (<img className='nav-bar-avatar-img' onClick={onClickUserAvatar}
             src={imgSrc === undefined ? 'https://static-00.iconduck.com/assets.00/profile-user-icon-256x256-zhsk04ey.png' : imgSrc }alt="" />)
     }
@@ -77,7 +54,6 @@ export function NavBar() {
                 </div>
                 <hr  className='nav-logo-hr'/>
                 <div className="nav-a-container">
-                    {/* <NavLink to='/board/'><span className='nav-bar-board-logo-container'>< img className='nav-bar-board-logo' src={wm_icon} style={{ maxWidth: '30px' }} /></span></NavLink> */}
                     <NavLink to='/board/'>< img className='nav-bar-board-logo' src={wm_icon} style={{ maxWidth: '30px' }} /></NavLink>
                 <div className='nav-bar-triangle'></div>
                 </div>
@@ -89,9 +65,7 @@ export function NavBar() {
                 <div>{getAvatarImg()}</div>
                 {imgSrc && <img className='uploaded-img' src={`${imgSrc}`} alt="" />}
                 <span className='task-details-input-upload'><Icon className='task-details-header-time-icon' iconType={Icon.type.SVG} icon={Gallery} iconLabel="my svg icon" iconSize={18} />Upload profile image</span>
-
                 <ImgUploader setImgSrc={setImgSrc} />
-
                 <button className='btn nav-bar-logout-btn' onClick={onLogout}>Log Out</button>
             </div>}
             <UserMsg />

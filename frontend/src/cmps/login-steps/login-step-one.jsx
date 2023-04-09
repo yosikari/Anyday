@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { LoginFaceBook } from "../facebook-login";
 
-import { Icon, Loader } from 'monday-ui-react-core';
+import { Icon } from 'monday-ui-react-core';
 import { MoveArrowRight } from 'monday-ui-react-core/icons';
 
 export function LoginStepOne({ props , users}) {
@@ -21,7 +21,6 @@ export function LoginStepOne({ props , users}) {
     }
 
     return (
-
         <section className='login-step-one'>
             <div className="router-wrapper">
                 <div className="email-first-component">

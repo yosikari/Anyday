@@ -21,7 +21,6 @@ export function Login() {
         try {
             const users = await userService.getUsers()
             setUsers(users)
-            // console.log('users',users)
         }
         catch (err) {
             console.error('Error:', err)

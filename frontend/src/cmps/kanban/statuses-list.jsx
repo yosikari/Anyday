@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import { ADD_GROUP_TASK } from "../../services/board.service.local";
 import { updateGroup } from "../../store/board.actions";
 import { TaskCard } from "./task-card";
@@ -47,7 +47,6 @@ export function StatusesList({ status, board, provided }) {
 
                                             <TaskCard task={task} group={group} board={board} snapshot={snapshot}/>
                                         </div>
-
                                     }
                                 </Draggable>
                                 : '')

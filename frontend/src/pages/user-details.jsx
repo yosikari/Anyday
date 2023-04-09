@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { userService } from '../services/user.service.js'
@@ -11,7 +10,6 @@ import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from
 export function UserDetails() {
   const loggedInUser = userService.getLoggedinUser()
   const params = useParams()
-  const user = useSelector(storeState => storeState.userModule.watchedUser)
 
   useEffect(() => {
     loadUser(params.id)
@@ -38,12 +36,7 @@ export function UserDetails() {
           {loggedInUser.fullname}
         </h3>
         <h2>email: {loggedInUser.email}</h2>
-        {/* Demo for dynamic images: */}
-        {/* <div className="user-img" style={{ backgroundImage: `url('/img/u${0}.png')` }}>
-        </div> */}
-
         <img src={`${loggedInUser.imgUrl}`} style={{ width: '50vw', objectFit:'contain'}} alt="" />
-
         <pre>
           {JSON.stringify(loggedInUser, null, 2)}
         </pre>

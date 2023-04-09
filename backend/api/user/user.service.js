@@ -1,7 +1,6 @@
 
 const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
-const reviewService = require('../review/review.service')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
@@ -21,8 +20,6 @@ async function query(filterBy = {}) {
         users = users.map(user => {
             delete user.password
             user.createdAt = ObjectId(user._id).getTimestamp()
-            // Returning fake fresh data
-            // user.createdAt = Date.now() - (1000 * 60 * 60 * 24 * 3) // 3 days ago
             return user
         })
         return users
@@ -38,7 +35,6 @@ async function getById(userId) {
         const collection = await dbService.getCollection('user')
         const user = await collection.findOne({ _id: ObjectId(userId) })
         delete user.password
-
         user.givenReviews = await reviewService.query({ byUserId: ObjectId(user._id) })
         user.givenReviews = user.givenReviews.map(review => {
             delete review.byUser
@@ -76,14 +72,7 @@ async function update(user) {
     try {
         const prevUser = await getById(user._id)
         prevUser.imgUrl = user.imgUrl
-        // peek only updatable properties
          const userToSave = prevUser
-        // {
-        //     _id: ObjectId(user._id), // needed for the returnd obj
-        //     fullname: user.fullname,
-        //     imgUrl: user.imgUrl,
-        // }
-        // console.log('usertosave......................' ,userToSave)
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
         return userToSave
@@ -95,7 +84,6 @@ async function update(user) {
 
 async function add(user) {
     try {
-        // peek only updatable fields!
         const userToAdd = {
             email: user.email,
             password: user.password,

@@ -9,17 +9,13 @@ export function PriorityModal({ prior, onClickLabelFilter }) {
     }
 
     return (
-
         <div className={`status-filter ${isStatusChose ? 'active-filter' : ''}`}
             onClick={() => onClickStatus(prior.label)}
-
         >
             <div className="status-color-circle"
                 style={{ backgroundColor: prior.bgColor }}
             ></div>
             <div className="status-txt"> {prior.label === 'default' ? 'blank' : prior.label}</div>
-
         </div>
-
     )
 }

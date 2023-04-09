@@ -9,17 +9,13 @@ export function LabelModal({ label, onClickLabelFilter }) {
     }
 
     return (
-
         <div className={`status-filter ${isStatusChose ? 'active-filter' : ''}`}
             onClick={() => onClickStatus(label.label)}
-
         >
             <div className="status-color-circle"
                 style={{ backgroundColor: label.bgColor }}
             ></div>
             <div className="status-txt"> {label.label === 'default' ? 'blank' : label.label}</div>
-
         </div>
-
     )
 }
